@@ -8,9 +8,10 @@
 //Note: For this question, I did alot of extra study and used other concepts as well.
 //There are detailed comments to show all the steps.
 
-// Define the number of cards in a poker hand and the maximum length of a card (e.g.,10S)
-int numCards = 5;       // We have 5 cards in each player's hand
-int maxCardLen = 3;     // Each card has a maximum length of 3haracters (e.g "10S)
+// define the number of cardsin a poker hand and the maximum length of a card (e.g.,10S)
+int numCards= 5       // We have 5 cards in each player's hand
+int maxCardLen= 3     // Each card has a maximum length of 3 characters (e.g., "10S")
+
 // Function to parse a line of input into two separate poker hands
 void parseHands(char line[], char player1[][maxCardLen], char player2[][maxCardLen]) {
     //Tokenizing:Breaking down a string of characters into smaller pieces called tokens based on specific conditions
@@ -18,28 +19,28 @@ void parseHands(char line[], char player1[][maxCardLen], char player2[][maxCardL
     char *token = strtok(line, " ");
     int index = 0; // Index to keep track of the current card being processed
     
-    // Parsing player 1's hand
+    // Parsing player 1 hand
     while (token != NULL && index < numCards) {
         strcpy(player1[index], token); // Copying the token (card) into player1's hand
         token = strtok(NULL, " ");     // Move to the next token (card)
         index++;                       // Move to the next position in the hand array
     }
     
-    // Reset index for player 2's hand
+    //reset index for player 2's hand
     index = 0;
     // Parsing player 2's hand
     while (token != NULL && index < numCards) {
-    strcpy(player2[index], token); // Copying the token (card) into player2's hand
+        strcpy(player2[index], token); // Copying the token (card) intoplayer2 hand
         token = strtok(NULL, " ");     // Move to the next token (card)
         index++;                       // Move to the next position in the hand array
     }
 }
 
-// Function to compare two poker hands and determine the winner
+// function to compare two poker hands and determine the winner
 int compareHands(char player1[][maxCardLen], char player2[][maxCardLen]) {
     // Compare the highest card of each hand
     for (int i = 0; i < numCards; i++) {
-        // Convert cards to integers for comparison (e.g., "10S" becomes 10)
+        // Convert cards to integeror comparison (e.g., "10S" becomes 10)
         int card1 = atoi(player1[i]);
         int card2 = atoi(player2[i]);
         // Compare the current card of player1 with the current card of player2
@@ -49,7 +50,7 @@ int compareHands(char player1[][maxCardLen], char player2[][maxCardLen]) {
             return 2; // Player 2 wins
     }
     
-    return 0; // It's a tie if all cards are equal
+    return 0; // It's tie if all cards are equal
 }
 
 int main() {
@@ -68,13 +69,13 @@ int main() {
         // Arrays to store the cards of both players' hands
         char player1[numCards][maxCardLen], player2[numCards][maxCardLen];
         
-        // Parse the input line to extract hands for both players
+        // parse the input line to extract hands for both players
         parseHands(line, player1, player2);
         
         // Compare the hands to determine the winner
         int winner = compareHands(player1, player2);
         
-        // Update win counts based on the comparison result
+        // update win counts based on the comparison result
         if (winner == 1)
             player1Wins++; // Increment player 1's win count
         else if (winner == 2)
